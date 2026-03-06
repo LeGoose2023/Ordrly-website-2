@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordrly - One-Day Problem Space Resets | Pittsburgh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --accent: #ff6b35;
+            --accent-light: #ff8c5a;
+            --success: #2d9d42;
+            --bg: #f5f3f0;
+            --text: #333;
+            --text-light: #666;
+            --border: #e0ddd9;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: var(--white);
+            border-bottom: 2px solid var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--primary);
+        }
+
+        .logo .accent {
+            color: var(--accent);
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.7rem 1.8rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -30%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero .accent-text {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--white);
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== PROBLEM SECTION ===== */
+        .problem-section {
+            background: var(--white);
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .problem-card {
+            background: var(--bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .problem-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .problem-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ===== SOLUTION SECTION ===== */
+        .solution-section {
+            background: var(--primary);
+            color: var(--white);
+            padding: 5rem 2rem;
+        }
+
+        .solution-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .solution-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-section .accent-text {
+            color: var(--accent);
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .solution-point {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 107, 53, 0.3);
+        }
+
+        .solution-point h3 {
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .solution-point p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services-section {
+            background: var(--white);
+            padding: 5rem 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--bg);
+            padding: 2.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 3px solid var(--accent);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== BUSINESS EFFICIENCY SECTION ===== */
+        .business-section {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: var(--white);
+            padding: 5rem 2rem;
+        }
+
+        .business-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .business-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .business-text h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .business-list {
+            list-style: none;
+        }
+
+        .business-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        .business-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .business-benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .benefit-item strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-item p {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        /* ===== PRICING SECTION ===== */
+        .pricing-section {
+            background: var(--bg);
+            padding: 5rem 2rem;
+        }
+
+        .pricing-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 8px;
+            border: 2px solid var(--accent);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 1.5rem 0;
+        }
+
+        .price-desc {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin: 2rem 0;
+            background: var(--bg);
+            padding: 1.5rem;
+            border-radius: 6px;
+        }
+
+        .pricing-features li {
+            list-style: none;
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .pricing-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            background: var(--white);
+            padding: 5rem 2rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            nav {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .solution-section h2,
+            .business-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .business-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .business-benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 1rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <div class="logo">Or<span class="accent">dr</span>ly</div>
+            <nav>
+                <a href="#problem">The Problem</a>
+                <a href="#solution">The Solution</a>
+                <a href="#services">Services</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Reclaim Your Space in <span class="accent-text">One Day</span></h1>
+            <p>Stop letting clutter drain your energy. Ordrly resets overwhelming spaces with focused, structured help—turning chaos into clarity and regaining functional control of your home.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Book Your Reset</button>
+                <button class="btn-secondary" onclick="document.getElementById('problem').scrollIntoView({behavior: 'smooth'})">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section class="problem-section" id="problem">
+        <div class="container">
+            <div class="section-header">
+                <h2>Does This Sound Familiar?</h2>
+                <p>Many homeowners face spaces that have become overwhelming—but you don't have to suffer through them alone.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>🏚️ Too Much Stuff</h3>
+                    <p>Your garage, basement, or spare room has become a dumping ground. You don't even know where to start sorting.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>😓 Decision Fatigue</h3>
+                    <p>Every item forces a decision: keep it, donate it, throw it away? The mental load stops progress before it starts.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>⏱️ Never-Ending Projects</h3>
+                    <p>You've been "meaning to organize this" for months or years. The project feels too big to tackle alone.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>🧠 Overwhelm & Avoidance</h3>
+                    <p>The space stresses you out, so you avoid it—which makes the problem worse. It's a draining cycle.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>🚫 No Clear System</h3>
+                    <p>Even if you sort things, without a working system, the space doesn't stay organized.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>💰 Inefficient Services</h3>
+                    <p>Junk haulers and movers work slower when spaces aren't sorted. You pay more and get less done.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION SECTION -->
+    <section class="solution-section" id="solution">
+        <div class="solution-content">
+            <h2>Here's How <span class="accent-text">Ordrly</span> Works</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95;">Instead of dragging out your project for weeks, we reset your space in a single focused visit. Hands-on help. Clear decisions. Functional results.</p>
+            <div class="solution-grid">
+                <div class="solution-point">
+                    <h3>1. Sort & Decide</h3>
+                    <p>We work alongside you, making quick, structured decisions about what stays, what goes, and what gets donated.</p>
+                </div>
+                <div class="solution-point">
+                    <h3>2. Organize & Stage</h3>
+                    <p>Items are organized into clear categories and staged for removal, donation, or storage.</p>
+                </div>
+                <div class="solution-point">
+                    <h3>3. Create Systems</h3>
+                    <p>We establish simple, usable systems so your space stays organized and functional.</p>
+                </div>
+                <div class="solution-point">
+                    <h3>4. Move Forward</h3>
+                    <p>No more mental load. No more avoidance. Your space works for you again.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Spaces We Reset</h2>
+                <p>Every space is unique. Here are the areas we commonly help with.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Garages</h3>
+                    <p>Transform cluttered garages into functional storage with clear zones for tools, seasonal items, and everyday use.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏚️</div>
+                    <h3>Basements</h3>
+                    <p>Reclaim your basement from a dumping ground to usable space. Sort, organize, and create functional zones.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛏️</div>
+                    <h3>Spare Rooms</h3>
+                    <p>Clear out the "junk room" and reclaim space for guests, hobbies, or whatever you need.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🪜</div>
+                    <h3>Attics & Storage</h3>
+                    <p>Make sense of attic and storage unit chaos. Organize for easy access and future use.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h3>Inventory Spaces</h3>
+                    <p>Help small business owners and resellers organize inventory for faster access and better efficiency.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Custom Spaces</h3>
+                    <p>Overwhelmed by a specific area? We can reset virtually any space that's become unmanageable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUSINESS EFFICIENCY SECTION -->
+    <section class="business-section">
+        <div class="container">
+            <h2>For Businesses: Improve Efficiency & Operations</h2>
+            <div class="business-content">
+                <div class="business-text">
+                    <h3>Streamline Your Workspace & Operations</h3>
+                    <p>Businesses often face the same problem as homeowners: spaces become cluttered, inefficient, and costly to manage.</p>
+                    <p style="margin-top: 1rem;">Ordrly helps companies:</p>
+                    <ul class="business-list">
+                        <li>Organize warehouse & inventory spaces for faster operations</li>
+                        <li>Reclaim office, storage, or break room space</li>
+                        <li>Implement systems that improve team productivity</li>
+                        <li>Reduce wasted time searching for items or navigating cluttered spaces</li>
+                        <li>Prepare spaces for audits or customer visits</li>
+                        <li>Maximize the utility of existing square footage</li>
+                    </ul>
+                </div>
+                <div class="business-benefits">
+                    <div class="benefit-item">
+                        <strong>⚡ Faster Operations</strong>
+                        <p>Clear spaces mean faster access, fewer bottlenecks, and better team coordination.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <strong>💼 Better Impressions</strong>
+                        <p>Organized spaces reflect well on your business when clients, partners, or auditors visit.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <strong>💰 Cost Savings</strong>
+                        <p>Reduce duplicate inventory purchases, wasted space rentals, and lost productivity.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <strong>🔄 Sustainable Systems</strong>
+                        <p>We don't just organize—we create systems your team can maintain long-term.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple, Flat-Rate Pricing</h2>
+                <p>No hourly guessing. No surprise costs. One focused space. One clear price.</p>
+            </div>
+            <div class="pricing-container">
+                <div class="pricing-card">
+                    <h3>Problem Space Reset</h3>
+                    <div class="price">$579</div>
+                    <p class="price-desc">Per space (1 day, focused session)</p>
+                    <ul class="pricing-features">
+                        <li>Complete sorting & decision-making</li>
+                        <li>Space restructuring & reorganization</li>
+                        <li>Staging for removal/donation</li>
+                        <li>Functional system creation</li>
+                        <li>Hands-on support throughout</li>
+                        <li>Available for homeowners & businesses</li>
+                    </ul>
+                    <button class="btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Book Your Reset</button>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: var(--text-light);">
+                <strong>Next steps:</strong> Junk haulers, movers, and cleaning services can work faster and more efficiently once your space is organized. We coordinate the reset so other services can follow smoothly.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you haul away junk or donate items?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No—we focus on sorting, organizing, and preparing items for removal or donation. We stage everything so junk haulers and donation centers can work efficiently. This approach keeps our process fast and focused, and it actually makes removal services cheaper and faster for you.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does a reset actually take?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A typical reset takes one focused day (usually 4-8 hours depending on the space size). We work efficiently to complete meaningful progress in one visit, so you don't have weeks of disruption.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What if my space is really large?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We can break larger projects into multiple focused resets, each addressing one specific zone or category. This keeps momentum going and prevents decision fatigue. Contact us to discuss your space.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you work with businesses too?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We help businesses organize warehouses, inventory spaces, offices, and storage areas to improve efficiency and operations. The same flat-rate, one-day reset approach works for commercial spaces.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What areas do you serve?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We currently serve the Pittsburgh and South Hills area. If you're in the region and have a space that needs resetting, contact us for availability.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I get started?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Click "Get Started" or fill out our contact form below. Tell us about your space, and we'll discuss next steps, answer questions, and schedule your reset.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section style="background: var(--bg); padding: 5rem 2rem;" id="contact">
+        <div class="container" style="max-width: 600px;">
+            <div class="section-header">
+                <h2>Ready to Reclaim Your Space?</h2>
+                <p>Get in touch and let's schedule your one-day problem space reset.</p>
+            </div>
+            <form style="background: var(--white); padding: 2.5rem; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Your Name</label>
+                    <input type="text" placeholder="Full name" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Email</label>
+                    <input type="email" placeholder="your@email.com" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Phone</label>
+                    <input type="tel" placeholder="(412) 555-0000" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">What space needs resetting?</label>
+                    <textarea placeholder="Garage, basement, spare room, etc." rows="3" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem; font-family: inherit;"></textarea>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Are you a homeowner or business?</label>
+                    <select style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem;">
+                        <option>Select...</option>
+                        <option>Homeowner</option>
+                        <option>Business/Commercial</option>
+                    </select>
+                </div>
+                <button class="btn-primary" style="width: 100%; padding: 1rem; font-size: 1.05rem;">Get Your Free Consultation</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Ordrly</h4>
+                <p>One-day problem space resets that help homeowners and businesses reclaim control of overwhelming spaces. Fast. Focused. Functional.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <p><a href="#services">Problem Space Resets</a></p>
+                <p><a href="#services">Garage Organization</a></p>
+                <p><a href="#services">Basement Clearing</a></p>
+                <p><a href="#services">Business Efficiency</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Get In Touch</h4>
+                <p>📍 Pittsburgh & South Hills, PA</p>
+                <p>📧 <a href="/cdn-cgi/l/email-protection#a4ebd6c0d6c8dde4cccbd0c9c5cdc88ac7cbc9"><span class="__cf_email__" data-cfemail="a4ebd6c0d6c8dde4cccbd0c9c5cdc88ac7cbc9">[email&#160;protected]</span></a></p>
+                <p>📞 (412) 983-8875</p>
+                <p><a href="#faq">FAQ</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Ordrly. All rights reserved. | Local organizing service serving Pittsburgh area homeowners and businesses.</p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
